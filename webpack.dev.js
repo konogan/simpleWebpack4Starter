@@ -6,27 +6,13 @@ module.exports = merge(common, {
   mode: 'development',
   devServer: {
     hot: true,
-    contentBase: './dist'
+    contentBase: './dist',
+    historyApiFallback: true,
+    noInfo: true
   },
-
+  devtool: '#eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin()
-  ],
-  devtool: 'inline-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          }, {
-            loader: 'css-loader'
-          }, {
-            loader: 'sass-loader'
-          }
-        ]
-      }
-    ]
-  }
+  ]
+
 })

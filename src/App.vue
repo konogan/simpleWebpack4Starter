@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import "./assets/sass/main.scss";
+
 import Header from "./components/Header.vue";
 
 export default {

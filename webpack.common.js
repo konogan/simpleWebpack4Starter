@@ -2,11 +2,9 @@ const path = require('path');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { VueLoaderPlugin } = require('vue-loader');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.env.NODE_ENV;
-const devMode = process.env.NODE_ENV !== 'production'
 
 
 module.exports = {
@@ -43,8 +41,18 @@ module.exports = {
       {
         test: /\.s?[ac]ss$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader'
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              indentedSyntax: false // Set to true to use indented SASS syntax.
+            }
+          }
         ],
       }
     ]
@@ -55,10 +63,6 @@ module.exports = {
     //   title: 'My killer app'
     // })
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-    }),
     new HtmlWebpackPlugin({
       filename: path.join(__dirname, 'dist', 'index.html'),
       template: path.join(__dirname, 'src', 'index.html'),
