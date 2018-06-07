@@ -57,11 +57,15 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
+  performance: {
+    hints: false
+  },
   plugins: [
-    // new CleanWebpackPlugin(['dist']),
-    // new HtmlWebpackPlugin({
-    //   title: 'My killer app'
-    // })
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: path.join(__dirname, 'dist', 'index.html'),
