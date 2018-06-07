@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "develop": "webpack-dev-server --config webpack.dev.js --progress --open",
-    "build": "webpack --config webpack.prod.js --progress "
+    "dev": "NODE_ENV=development webpack-dev-server --config webpack.dev.js --progress --open",
+    "build": "NODE_ENV=production webpack --config webpack.prod.js --progress "
   },
   "keywords": [],
   "author": "",
@@ -29,5 +29,13 @@
     "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
+  },
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "mini-css-extract-plugin": "^0.4.0",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.2.4",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16"
   }
 }
