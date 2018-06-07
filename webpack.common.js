@@ -9,12 +9,27 @@ const env = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, 'src', 'app.js'),
+    app: path.join(__dirname, 'src', 'app.js')
   },
   mode: env,
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].[hash].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].[hash].bundle.js',
+    publicPath: path.resolve(__dirname, 'dist')
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true
+        }
+      }
+    }
   },
   module: {
     rules: [
